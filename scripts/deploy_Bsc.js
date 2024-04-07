@@ -11,7 +11,7 @@ async function main() {
 
   console.log(`Contract deployed to ${lock.target}`);
 }
-// 0x25Ef6A5D323F4Bb2e17BFB69A408f60d47F1E45d
+// 0x338380f40fB18b48663f0FE53C86269E92Be6a2A
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {

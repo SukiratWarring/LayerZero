@@ -6,11 +6,11 @@ async function main() {
   // get local contract
   const localContractInstance = await hre.ethers.getContractAt(
     OMNIABI.abi,
-    "0x8072D087bB099E1E196A2deF7b3F9825f1BEBDB3"
+    "0x958B0C0E247104Ba2774c7950C505DA401692821"
   );
 
   // get deployed remote contract address BSC
-  const remoteAddress = "0x25Ef6A5D323F4Bb2e17BFB69A408f60d47F1E45d";
+  const remoteAddress = "0x338380f40fB18b48663f0FE53C86269E92Be6a2A";
 
   // get remote chain id
   const remoteChainId = "10102";

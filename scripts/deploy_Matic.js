@@ -4,14 +4,14 @@ const hre = require("hardhat");
 
 async function main() {
   const lock = await hre.ethers.deployContract("OmniCounter", [
-    "0x93f54D755A063cE7bB9e6Ac47Eccc8e33411d706",
+    "0xf69186dfBa60DdB133E91E9A4B5673624293d8F8",
   ]);
 
   await lock.waitForDeployment();
 
   console.log(`Contract deployed to ${lock.target}`);
 }
-// 0x8072D087bB099E1E196A2deF7b3F9825f1BEBDB3
+// 0x958B0C0E247104Ba2774c7950C505DA401692821
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {

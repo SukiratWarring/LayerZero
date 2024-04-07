@@ -6,7 +6,7 @@ async function main() {
   const remoteChainId = "10109";
   const localContractInstance = await hre.ethers.getContractAt(
     OMNIABI.abi,
-    "0x25Ef6A5D323F4Bb2e17BFB69A408f60d47F1E45d"
+    "0x338380f40fB18b48663f0FE53C86269E92Be6a2A"
   );
 
   // quote fee with default adapterParams
@@ -33,10 +33,11 @@ async function main() {
       value: fees[0],
     })
   ).wait();
+
   console.log(
     `✅ Message Sent [${hre.network.name}] incrementCounter on destination OmniCounter @ [${remoteChainId}]`
   );
-  console.log(`tx: ${tx.transactionHash}`);
+  console.log(`tx: ${JSON.stringify(tx)}`);
 
   console.log(``);
   console.log(
