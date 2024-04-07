@@ -1,14 +1,16 @@
 const OMNIABI = require("../constants/Omni.json");
 
-module.exports = async function (taskArgs, hre) {
+const hre = require("hardhat");
+
+async function main() {
   const remoteChainId = "10109";
   const localContractInstance = await hre.ethers.getContractAt(
     OMNIABI.abi,
-    "0x8072D087bB099E1E196A2deF7b3F9825f1BEBDB3"
+    "0x25Ef6A5D323F4Bb2e17BFB69A408f60d47F1E45d"
   );
 
   // quote fee with default adapterParams
-  const adapterParams = ethers.utils.solidityPack(
+  const adapterParams = ethers.solidityPacked(
     ["uint16", "uint256"],
     [1, 200000]
   ); // default adapterParams example
@@ -25,12 +27,11 @@ module.exports = async function (taskArgs, hre) {
     false,
     adapterParams
   );
-  console.log(
-    `fees[0] (wei): ${fees[0]} / (eth): ${ethers.utils.formatEther(fees[0])}`
-  );
-
+  console.log("fees[0]", fees[0]);
   let tx = await (
-    await omniCounter.incrementCounter(remoteChainId, { value: fees[0] })
+    await localContractInstance.incrementCounter(remoteChainId, {
+      value: fees[0],
+    })
   ).wait();
   console.log(
     `✅ Message Sent [${hre.network.name}] incrementCounter on destination OmniCounter @ [${remoteChainId}]`
@@ -43,4 +44,8 @@ module.exports = async function (taskArgs, hre) {
   );
   console.log(`       (it may take a minute to arrive, be patient!)`);
   console.log("");
-};
+}
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
